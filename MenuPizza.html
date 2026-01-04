@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="Logo.png" type="image/png">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TastyPizza — Меню</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #ff9f43;
+      --accent: #ee5253;
+      --text-main: #2f3542;
+      --muted: #57606f;
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --card-inner: #ffffff;
+    }
+
+    body.dark {
+      --bg: #2f3542;
+      --accent: #ff9f43;
+      --text-main: #ffffff;
+      --muted: #ced4da;
+      --card-bg: rgba(47, 53, 66, 0.9);
+      --card-inner: #3e4451;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg);
+      background-image: linear-gradient(135deg, var(--bg) 0%, #ff6b6b 100%);
+      background-attachment: fixed;
+      color: var(--text-main);
+      transition: all 0.3s ease;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      backdrop-filter: blur(10px);
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 12px 24px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--accent);
+    }
+
+    nav a {
+      margin-left: 18px;
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 800;
+      text-align: center;
+      color: #fff;
+      margin: 10px 0;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+
+    .menu-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+      border-bottom: 2px solid rgba(0,0,0,0.05);
+      padding-bottom: 15px;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      background: transparent;
+      color: var(--muted);
+      border: none;
+      padding: 10px 25px;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.3s;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .pizza {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      background: var(--card-inner);
+      padding: 15px;
+      border-radius: 15px;
+      transition: 0.3s;
+    }
+
+    .pizza:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .pizza img {
+      width: 100px;
+      height: 100px;
+      border-radius: 12px;
+      object-fit: contain;
+    }
+
+    .pizza-info { flex-grow: 1; }
+
+    .price {
+      font-weight: 800;
+      color: var(--accent);
+      font-size: 18px;
+      margin-right: 10px;
+    }
+
+    button.add-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    #orderModal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+    }
+
+    .modal-content {
+      width: 90%;
+      max-width: 420px;
+      background: var(--card-inner);
+      border-radius: 20px;
+      padding: 25px;
+    }
+
+    @media (max-width: 900px) {
+      .menu { grid-template-columns: 1fr; }
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #fff;
+      padding-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo"><img src="Logo.png" alt="Logo" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div>
+          <div style="font-weight:800; color: var(--accent)">TastyPizza</div>
+          <div style="font-size:13px; color:var(--muted)">Меню</div>
+        </div>
+      </div>
+      <nav class="card" style="padding:10px 18px; display:flex; align-items:center; box-shadow:none; background:transparent;">
+        <a href="HomePizza.html">Головна</a>
+        <a href="MenuPizza.html">Меню</a>
+        <a href="ContactPizza.html">Контакти</a>
+        <a href="USPizza.html">Про нас</a>
+        <a href="#order" id="openOrder">Замовити</a>
+      </nav>
+      <img id="themeToggle" src="moon.png" alt="Toggle Theme" style="width: 40px; height: 40px; cursor: pointer; transition: 0.3s; border-radius: 50%;">
+    </header>
+
+    <h1>Наше Меню</h1>
+
+    <div class="card">
+      <div class="menu-tabs">
+        <button class="tab-btn active" onclick="switchTab('pizza-tab', this)">🍕 Піца</button>
+        <button class="tab-btn" onclick="switchTab('drinks-tab', this)">🥤 Напої</button>
+        <button class="tab-btn" onclick="switchTab('desserts-tab', this)">🍰 Десерти</button>
+      </div>
+
+      <div id="pizza-tab" class="tab-content">
+        <div class="menu" id="menuList"></div>
+      </div>
+
+      <div id="drinks-tab" class="tab-content" style="display:none;">
+        <div class="menu" id="drinksGrid"></div>
+      </div>
+
+      <div id="desserts-tab" class="tab-content" style="display:none;">
+        <div class="menu" id="dessertsGrid"></div>
+      </div>
+    </div>
+
+    <footer>© TastyPizza — 2025</footer>
+  </div>
+
+  <div id="orderModal">
+    <div class="modal-content">
+      <h3 style="margin-top:0">Ваше замовлення</h3>
+      <div id="cartList" style="max-height:240px; overflow-y:auto; margin-bottom:20px;"></div>
+      <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--muted); padding-top:15px;">
+        <strong>Сума: <span id="total">0</span> ₴</strong>
+        <div>
+          <button id="closeOrder" style="background:var(--muted); border:none; padding:10px; border-radius:10px; color:#fff; cursor:pointer;">Назад</button>
+          <button id="checkout" style="background:var(--accent); border:none; padding:10px; border-radius:10px; color:#fff; cursor:pointer;">Оформити</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const body = document.body;
+    const themeToggle = document.getElementById("themeToggle");
+
+    if (localStorage.getItem("theme") === "dark") {
+      body.classList.add("dark");
+    }
+
+    themeToggle.onclick = () => {
+      body.classList.toggle("dark");
+      localStorage.setItem("theme", body.classList.contains("dark") ? "dark" : "light");
+    };
+
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).style.display = 'block';
+      btn.classList.add('active');
+    }
+
+    const pizzas = [
+      { id: 1, name: "Маргарита", desc: "Томатний соус, Моцарела, Базилік, Оливкова олія", price: 199, img: "https://png.pngtree.com/png-clipart/20250215/original/pngtree-classic-margherita-pizza-with-fresh-basil-png-image_19846487.png" },
+      { id: 2, name: "Пепероні", desc: "Томатний соус, Моцарела, Пепероні", price: 249, img: "https://png.pngtree.com/png-clipart/20230928/original/pngtree-pepperoni-pizza-isolated-with-clipping-path-png-image_13007847.png" },
+      { id: 3, name: "4 сири", desc: "Моцарела, Пармезан, Горгонзола, Ементаль", price: 279, img: "https://gorillazz.pizza/image/cache/catalog/tovari/pizza/05-1000x1000.png" },
+      { id: 4, name: "Вегетаріанська", desc: "Томатний соус, Моцарела, Помідори, Перець, Гриби, Оливки", price: 239, img: "https://bingopizza.com.ua/wp-content/uploads/2020/02/vegeterianskaya.png" },
+      { id: 5, name: "Гавайська", desc: "Томатний соус, Моцарела, Шинка, Ананас", price: 259, img: "https://bingopizza.com.ua/wp-content/uploads/2021/02/%D0%B3%D0%B0%D0%B2%D0%B0%D0%B8%CC%86%D1%81%D1%8C%D0%BA%D0%B0.png" },
+      { id: 6, name: "М'ясна", desc: "Томатний соус, Моцарела, Бекон, Шинка, Ковбаски, Салямі", price: 299, img: "https://lovepizza.com.ua/images/virtuemart/product/myasna1.png" },
+      { id: 7, name: "BBQ", desc: "Соус BBQ, Моцарела, Курка, Цибуля, Кукурудза", price: 289, img: "https://www.pizzacity.dp.ua/wp-content/uploads/2020/12/BBQ.png" },
+      { id: 8, name: "Карбонара", desc: "Вершковий соус, Моцарела, Бекон, Пармезан, Яйце", price: 269, img: "https://image.similarpng.com/file/similarpng/original-picture/2020/04/Pizza-carbonara-PNG.png" },
+      { id: 9, name: "Діабло", desc: "Томатний соус, Моцарела, Гострий салямі, Перець чилі, Часник", price: 289, img: "https://mavrapizza.com/wp-content/uploads/dyablo_Montazhnaya-oblast-1.png" },
+      { id: 10, name: "Салямі", desc: "Томатний соус, Моцарела, Салямі", price: 249, img: "https://aleksandrsann.ks.ua/image/cache/catalog/pizza/updated/salami-370x370h.png" }
+    ];
+
+    const drinks = [
+      { id: 101, name: "Coca-Cola", desc: "0.5л", price: 45, img: "https://pngimg.com/uploads/fanta/fanta_PNG54.png" },
+      { id: 102, name: "Fanta Orange", desc: "0.5л", price: 45, img: "https://pngimg.com/uploads/fanta/fanta_PNG54.png" },
+      { id: 103, name: "Sprite", desc: "0.5л", price: 45, img: "https://pngimg.com/uploads/sprite/sprite_PNG8928.png" },
+      { id: 104, name: "Сік Rich", desc: "0.5л", price: 55, img: "https://crazycrab.com.ua/image/cache/catalog/napoi/rich%20%D0%B5%D0%BA%D0%B7%D0%BE%D1%82%D0%B8%D0%BA-700x700.png" },
+      { id: 105, name: "Вода BonAqua", desc: "0.5л", price: 35, img: "https://arizona.pl.ua/image/cache/catalog/napitki/bonakva-400x500.png" }
+    ];
+
+    const desserts = [
+      { id: 201, name: "Тірамісу", desc: "Класичний десерт, 150г", price: 125, img: "https://png.pngtree.com/png-clipart/20241113/original/pngtree-tiramisu-cake-png-image_16978655.png" },
+      { id: 202, name: "Чізкейк", desc: "Ніжний сирний десерт, 120г", price: 110, img: "https://png.pngtree.com/png-clipart/20240120/original/pngtree-strawberry-cheesecake-dessert-png-image_14139759.png" }
+    ];
+
+    const cart = [];
+
+    function renderCategory(items, containerId, type) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = "";
+      items.forEach(p => {
+        const el = document.createElement("div");
+        el.className = "pizza";
+        el.innerHTML = `
+          <img src="${p.img}" alt="${p.name}">
+          <div class="pizza-info"><h3>${p.name}</h3><div style="color:var(--muted); font-size:13px">${p.desc}</div></div>
+          <div class="price">${p.price} ₴</div>
+          <button class="add-btn" onclick="addToCart(${p.id}, '${type}')">＋</button>`;
+        container.appendChild(el);
+      });
+    }
+
+    function addToCart(id, type) {
+      let source = type === 'drink' ? drinks : type === 'dessert' ? desserts : pizzas;
+      const item = source.find(x => x.id === id);
+      const found = cart.find(c => c.id === id);
+      if (found) found.qty++; else cart.push({ ...item, qty: 1 });
+      updateTotal();
+      alert(`${item.name} додано до кошика!`);
+    }
+
+    function updateTotal() {
+      document.getElementById("total").textContent = cart.reduce((s, i) => s + i.qty * i.price, 0);
+    }
+
+    document.getElementById("openOrder").onclick = e => {
+      e.preventDefault();
+      const list = document.getElementById("cartList");
+      list.innerHTML = cart.length === 0 ? "<div style='text-align:center;'>Порожньо</div>" : "";
+      cart.forEach(i => {
+        const row = document.createElement("div");
+        row.style.cssText = "display:flex; justify-content:space-between; margin-bottom:10px";
+        row.innerHTML = `<span>${i.name} x${i.qty}</span> <strong>${i.qty * i.price} ₴</strong>`;
+        list.appendChild(row);
+      });
+      document.getElementById("orderModal").style.display = "flex";
+    };
+
+    document.getElementById("closeOrder").onclick = () => document.getElementById("orderModal").style.display = "none";
+    document.getElementById("checkout").onclick = () => { 
+      if(cart.length === 0) return alert("Кошик порожній!");
+      alert("Замовлення прийнято!"); 
+      cart.length = 0; 
+      updateTotal(); 
+      document.getElementById("orderModal").style.display = "none"; 
+    };
+
+    renderCategory(pizzas, "menuList", "pizza");
+    renderCategory(drinks, "drinksGrid", "drink");
+    renderCategory(desserts, "dessertsGrid", "dessert");
+  </script>
+</body>
+</html>

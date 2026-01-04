@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="Logo.png" type="image/png">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TastyPizza — Про нас</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #ff9f43;
+      --accent: #ee5253;
+      --text-main: #2f3542;
+      --muted: #57606f;
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --card-inner: #ffffff;
+    }
+
+    body.dark {
+      --bg: #2f3542;
+      --accent: #ff9f43;
+      --text-main: #ffffff;
+      --muted: #ced4da;
+      --card-bg: rgba(47, 53, 66, 0.9);
+      --card-inner: #3e4451;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg);
+      background-image: linear-gradient(135deg, var(--bg) 0%, #ff6b6b 100%);
+      background-attachment: fixed;
+      color: var(--text-main);
+      transition: 0.3s;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      backdrop-filter: blur(10px);
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 12px 24px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--accent);
+    }
+
+    nav a {
+      margin-left: 18px;
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 800;
+      text-align: center;
+      color: #fff;
+      margin: 10px 0;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+
+    .story-section {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .story-text h2 {
+      margin-top: 0;
+      color: var(--accent);
+      font-size: 28px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .stat-card {
+      background: var(--card-inner);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--accent);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Анімований текст Богдана */
+    .author-text {
+      font-size: 20px;
+      font-weight: 800;
+      margin-top: 20px;
+      display: inline-block;
+      background: linear-gradient(to right, #8e44ad, #4b0082, #8e44ad);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientText 3s linear infinite;
+    }
+
+    @keyframes gradientText {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    #themeToggle {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #fff;
+      padding-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .story-section { flex-direction: column; text-align: center; }
+      .stats-grid { grid-template-columns: 1fr; }
+      header { flex-direction: column; gap: 15px; }
+      nav a { margin: 0 10px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">
+          <img src="Logo.png" alt="Logo" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div>
+          <div style="font-weight:800; color: var(--accent)">TastyPizza</div>
+          <div style="font-size:13px; color:var(--muted)">Про нас</div>
+        </div>
+      </div>
+
+      <nav class="card" style="padding:10px 18px; display:flex; align-items:center; box-shadow:none; background:transparent;">
+        <a href="HomePizza.html">Головна</a>
+        <a href="MenuPizza.html">Меню</a>
+        <a href="ContactPizza.html">Контакти</a>
+        <a href="USPizza.html">Про нас</a>
+        <a href="MenuPizza.html">Замовити</a>
+      </nav>
+
+      <img id="themeToggle" src="moon.png" alt="Toggle Theme">
+    </header>
+
+    <h1>Про нас</h1>
+
+    <div class="card">
+      <div class="story-section">
+        <div class="story-text">
+          <h2>Наша Історія!</h2>
+          <p>Ми почали свій шлях з однієї маленької печі 🍕 та великої любові до смачного тіста. У нас не було нічого зайвого — тільки бажання готувати піцу так, щоб вона дарувала радість 😊. Крок за кроком ми росли, вчилися та вдосконалювалися.</p>
+          <p>Сьогодні <strong>TastyPizza</strong> — це тепле та затишне місце, де поєднуються прості традиції ❤️ і нові ідеї ✨. Тут завжди пахне свіжою випічкою та гарним настроєм.</p>
+          <p>Кожна наша піца — це ручна робота 👨‍🍳👩‍🍳, свіжі та якісні інгредієнти 🧀🍅 і щире бажання зробити ваш день трохи яскравішим і смачнішим 😋. Ми готуємо з душею — для вас і ваших близьких.</p>
+        </div>
+        <img src="Logo.png" alt="Chef" style="width: 300px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-number" data-target="15000">0</span>
+          <span class="stat-label">Проданих піц</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" data-target="12">0</span>
+          <span class="stat-label">Шеф-кухарів</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" data-target="25">0</span>
+          <span class="stat-label">Хвилин доставка</span>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 30px;">
+        <div class="author-text">Зробив Богдан :)</div>
+      </div>
+    </div>
+
+    <footer>© TastyPizza — 2025</footer>
+  </div>
+
+  <script>
+  const body = document.body;
+  const themeToggle = document.getElementById("themeToggle");
+
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark");
+  }
+
+  themeToggle.onclick = () => {
+    body.classList.toggle("dark");
+    localStorage.setItem("theme", body.classList.contains("dark") ? "dark" : "light");
+  };
+
+  const stats = document.querySelectorAll('.stat-number');
+  const animateStats = () => {
+    stats.forEach(stat => {
+      const target = +stat.getAttribute('data-target');
+      let current = 0;
+      const increment = target / 50;
+      
+      const update = () => {
+        if (current < target) {
+          current += increment;
+          stat.innerText = Math.ceil(current) + (target === 25 && current >= target ? " хв" : (target !== 25 ? "+" : ""));
+          setTimeout(update, 30);
+        } else {
+          stat.innerText = target + (target === 25 ? " хв" : "+");
+        }
+      };
+      update();
+    });
+  };
+
+  window.onload = animateStats;
+</script>
+</body>
+</html>

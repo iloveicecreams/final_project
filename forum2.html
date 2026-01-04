@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>REVADE - RobloxOverlord [Full Edition]</title>
+    <style>
+        :root {
+            --bg-body: #0f0f0f;
+            --bg-post: #1a1a1a;
+            --bg-sidebar: #222222;
+            --text-main: #d1d1d1;
+            --accent-blue: #3a86ff;
+            --accent-yellow: #eeff00;
+            --accent-red: #ff4d4d;
+            --border: #333;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            font-family: Verdana, Arial, sans-serif;
+            font-size: 12px;
+            margin: 0;
+            color: var(--text-main);
+        }
+
+        a { color: var(--accent-blue); text-decoration: underline; }
+        
+        /* Шапка */
+        .header-top { background: #fff; padding: 10px 20px; border-bottom: 2px solid var(--accent-blue); }
+        .logo img { height: 40px; }
+        
+        /* Навигация */
+        .main-nav { background: #111; display: flex; padding: 0 20px; border-bottom: 1px solid #000; }
+        .main-nav a { color: #fff; text-decoration: none; padding: 12px 15px; font-weight: bold; font-size: 11px; border-right: 1px solid #222; }
+        .main-nav a:hover { background: var(--accent-blue); }
+
+        .wrapper { max-width: 1100px; margin: 20px auto; padding: 0 15px; }
+
+        /* Посты */
+        .post-container { display: flex; background: var(--bg-post); border: 1px solid var(--border); margin-bottom: 5px; }
+        .post-sidebar { width: 190px; padding: 15px; background: var(--bg-sidebar); border-right: 1px solid var(--border); text-align: center; flex-shrink: 0; }
+        
+        .author-name { font-weight: bold; color: #58a6ff; font-size: 13px; display: block; margin-bottom: 8px; }
+        
+        /* Стили Аватарок */
+        .avatar-box { 
+            width: 100px; height: 100px; 
+            margin: 0 auto 10px auto; 
+            border: 3px solid #2316db; 
+            background: #c5c5c5; 
+            border-radius: 25px; 
+            overflow: hidden; 
+        }
+        .avatar-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        .user-info { font-size: 10px; text-align: left; line-height: 1.5; color: #aaa; }
+
+        .post-content { flex: 1; padding: 15px; min-width: 0; }
+        .post-date-row { font-size: 10px; color: #666; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin-bottom: 10px; display: flex; justify-content: space-between; }
+
+        /* Игровые стили */
+        .game-title { color: var(--accent-blue); font-size: 20px; margin: 0; }
+        .spoiler { background: #2d3238; border: 1px solid #444; margin: 5px 0; padding: 6px 10px; cursor: pointer; font-weight: bold; font-size: 11px; display: flex; justify-content: space-between; }
+        .spoiler-content { display: none; padding: 10px; border: 1px solid #444; border-top: none; background: #151515; margin-bottom: 10px; }
+        
+        .download-title { color: var(--accent-red); font-weight: bold; margin-top: 15px; display: block; text-transform: uppercase; }
+        .quote { background: #252525; border-left: 3px solid var(--accent-blue); padding: 10px; margin: 10px 0; font-style: italic; color: #bbb; }
+        
+        .edit-info { margin-top: 30px; font-size: 10px; color: #555; }
+        .edit-reason { background: #2b2a1a; border: 1px solid #55501a; padding: 5px; margin-top: 5px; color: #ccc; }
+
+        /* Кнопка ответа */
+        .reply-box { background: var(--bg-post); border: 1px solid var(--border); padding: 20px; margin-top: 15px; }
+        textarea { width: 100%; height: 80px; background: #000; border: 1px solid #444; color: #fff; padding: 10px; box-sizing: border-box; resize: vertical; }
+    </style>
+</head>
+<body>
+
+    <header class="header-top">
+        <div class="logo"><img src="forums.png" alt="Logo"></div>
+    </header>
+
+    <nav class="main-nav">
+        <a href="#">ГЛАВНАЯ</a><a href="#">ФОРУМ</a><a href="#">НОВОСТИ</a><a href="#">МОДЫ</a><a href="#">ПОМОЩЬ</a>
+    </nav>
+
+    <div class="wrapper">
+        <div class="post-container">
+            <div class="post-sidebar">
+                <span class="author-name">kisel~</span>
+                <div class="avatar-box">
+                    <img src="https://klev.club/uploads/posts/2023-11/1698832477_klev-club-p-kartinki-chelovek-kompot-14.jpg" alt="avatar">
+                </div>
+                <div class="user-info">
+                    <span style="color:#32d600;">★★ Реверс-инженер</span><br>
+                    <span style="color:var(--accent-red);">[offline]</span><br><br>
+                    Группа: <b style="color:#b392f0;">Уничтожитель</b><br>
+                    Сообщений: 18231<br>
+                    <b>Стаж: 8 лет 1 месяц</b><br>
+                    Устройство: Ryzen 7 9800X3D / RTX 5080 V2<br>
+                    Репутация: <b>9912</b>
+                </div>
+            </div>
+
+            <div class="post-content">
+                <div class="post-date-row"><span>26.12.2025, 12:00</span><span>#1</span></div>
+                <h2 class="game-title">FakeAdmin (модификация)</h2>
+                <p><b>Версия: 32.5 Public</b> | <b>Для:</b> Universal</p>
+
+                <div class="spoiler" onclick="toggle(this)">Тестировано на: REGAME, Xeno, Solara, Volcano, Bunni (+)</div>
+                <div class="spoiler-content">Работает без вылетов на большинстве современных инжекторов.</div>
+
+                <p><b>Описание:</b> Сборка включает в себя <b>ПОЧТИ</b> все функции Админа HDAdmin.</p>
+
+                <span class="download-title">Скачать:</span>
+                <b>Версия: 32.5</b> <a href="#">FakeAdmin (от 10.06.2025)</a><br>
+                <b>Версия: 32.4</b> <a href="#">FakeAdmin (от 27.03.2025)</a>
+
+                <span class="download-title" style="color: #ffa657;">unstable:</span>
+                <b>Версия: 33.0 (beta)</b> <a href="#">HatingRB (Пост #136)</a>
+
+                <br>
+                <div class="spoiler" onclick="toggle(this)">Спойлер (+) (Форки)</div>
+                <div class="spoiler-content">
+                    • <a href="#">FakeAdminMobile</a> Порт на мобилки ( port by portovi:) )<br>
+                </div>
+
+                <div class="spoiler" onclick="toggle(this)">Спойлер (+) (Прошлые версии)</div>
+                <div class="spoiler-content">Архив всех билдов с 2023 года.</div>
+
+                <div class="spoiler" onclick="toggle(this)">Спойлер (+) (Полезные дополнения)</div>
+                <div class="spoiler-content">Шейдеры, скрипты автоматизации и конфиги.</div>
+
+                <div class="edit-info">
+                    Отредактировал <b style="color:var(--accent-blue);">HatingRB</b> - Вчера, 20:09
+                    <div class="edit-reason">Причина: бета версия для 33.0 </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="post-container">
+            <div class="post-sidebar">
+                <span class="author-name" style="color:#684dff;">jon</span>
+                <div class="avatar-box"><img src="https://preview.redd.it/bring-back-this-hairstyle-for-jonathan-in-st5-v0-mycd17dar4cc1.jpg?width=640&crop=smart&auto=webp&s=08fc3c0c6a6831c4943951cb9337f7eb89bcdf17" alt="avatar"></div>
+                <div class="user-info"><span style="color:#d9ff00;">★★ Главный Модератор</span><br>Стаж: 10 лет 7 мес.</div>
+            </div>
+            <div class="post-content">
+                <div class="post-date-row"><span>Сегодня, 14:20</span><span>#2</span></div>
+                <p>не понял, в чем разница между FakeAdmin и InfinityYeild??</p>
+            </div>
+        </div>
+
+        <div class="post-container">
+            <div class="post-sidebar">
+                <span class="author-name">shawarma</span>
+                <div class="avatar-box"><img src="https://www.bahroma1.ru/templates/bahroma1/img/shaurma-istoriya-lyubvi-dlinoj-v-tysyacheletie.jpg" alt="avatar"></div>
+                <div class="user-info"><span style="color:#ffaa00;">★ Модератор</span><br>Стаж: 10 лет 7 мес.</div>
+            </div>
+            <div class="post-content">
+                <div class="post-date-row"><span>Сегодня, 15:10</span><span>#3</span></div>
+                <div class="quote">jon: разница</div>
+                <p>В InfinityYeild меньше функций. А так можно сказать что это форк InfinityYeild'а. </p>
+            </div>
+        </div>
+
+        <div class="post-container">
+            <div class="post-sidebar">
+                <span class="author-name">iAmsova</span>
+                <div class="avatar-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzRXYEeXYXAIkWkyolUPV0hjgfUW8sKe_7Qw&s" alt="avatar"></div>
+                <div class="user-info">Группа: Пользователь<br>Стаж: 1 Месяц</div>
+            </div>
+            <div class="post-content">
+                <div class="post-date-row"><span>Сегодня, 16:45</span><span>#4</span></div>
+                <p>имба!</p>
+            </div>
+        </div>
+
+        <div class="reply-box">
+            <div style="font-weight:bold; margin-bottom:10px;">Быстрый ответ</div>
+            <textarea placeholder="Введите ваше сообщение..."></textarea><br>
+            <button style="background:var(--accent-blue); color:#fff; border:none; padding:10px 20px; margin-top:5px; cursor:pointer; font-weight:bold;">Отправить ответ</button>
+        </div>
+    </div>
+
+    <script>
+        function toggle(el) {
+            const content = el.nextElementSibling;
+            const isHidden = content.style.display === "none" || content.style.display === "";
+            content.style.display = isHidden ? "block" : "none";
+            el.innerText = isHidden ? el.innerText.replace("(+)", "(-)") : el.innerText.replace("(-)", "(+)");
+        }
+    </script>
+</body>
+</html>
